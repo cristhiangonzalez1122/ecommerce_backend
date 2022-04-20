@@ -4,3 +4,4 @@ export * from './marca-productos.controller';
 export * from './productos-categoria.controller';
 export * from './imagenes-productos.controller';
 export * from './productos-imagenes.controller';
+export * from './marca.controller';

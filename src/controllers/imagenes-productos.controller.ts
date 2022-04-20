@@ -1,22 +1,14 @@
-import {
-  repository,
-} from '@loopback/repository';
-import {
-  param,
-  get,
-  getModelSchemaRef,
-} from '@loopback/rest';
-import {
-  Imagenes,
-  Productos,
-} from '../models';
+/* eslint-disable @typescript-eslint/naming-convention */
+import {repository} from '@loopback/repository';
+import {get, getModelSchemaRef, param} from '@loopback/rest';
+import {Imagenes, Productos} from '../models';
 import {ImagenesRepository} from '../repositories';
 
 export class ImagenesProductosController {
   constructor(
     @repository(ImagenesRepository)
     public imagenesRepository: ImagenesRepository,
-  ) { }
+  ) {}
 
   @get('/imagenes/{id}/productos', {
     responses: {

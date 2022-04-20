@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import {
   Count,
   CountSchema,
@@ -15,16 +16,13 @@ import {
   post,
   requestBody,
 } from '@loopback/rest';
-import {
-  Marca,
-  Productos,
-} from '../models';
+import {Marca, Productos} from '../models';
 import {MarcaRepository} from '../repositories';
 
 export class MarcaProductosController {
   constructor(
     @repository(MarcaRepository) protected marcaRepository: MarcaRepository,
-  ) { }
+  ) {}
 
   @get('/marcas/{id}/productos', {
     responses: {
@@ -61,11 +59,12 @@ export class MarcaProductosController {
           schema: getModelSchemaRef(Productos, {
             title: 'NewProductosInMarca',
             exclude: ['id'],
-            optional: ['id_marca']
+            optional: ['id_marca'],
           }),
         },
       },
-    }) productos: Omit<Productos, 'id'>,
+    })
+    productos: Omit<Productos, 'id'>,
   ): Promise<Productos> {
     return this.marcaRepository.productos(id).create(productos);
   }
@@ -88,7 +87,8 @@ export class MarcaProductosController {
       },
     })
     productos: Partial<Productos>,
-    @param.query.object('where', getWhereSchemaFor(Productos)) where?: Where<Productos>,
+    @param.query.object('where', getWhereSchemaFor(Productos))
+    where?: Where<Productos>,
   ): Promise<Count> {
     return this.marcaRepository.productos(id).patch(productos, where);
   }
@@ -103,7 +103,8 @@ export class MarcaProductosController {
   })
   async delete(
     @param.path.number('id') id: number,
-    @param.query.object('where', getWhereSchemaFor(Productos)) where?: Where<Productos>,
+    @param.query.object('where', getWhereSchemaFor(Productos))
+    where?: Where<Productos>,
   ): Promise<Count> {
     return this.marcaRepository.productos(id).delete(where);
   }
